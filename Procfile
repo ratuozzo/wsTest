@@ -1,1 +1,1 @@
-java -jar Pas-1.0-SNAPSHOT.jar
+web: java $JAVA_OPTS -cp target/classes:target/dependency/* HelloWorld

@@ -1,0 +1,79 @@
+-- Begin Create
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS CreateCalendar $$
+CREATE PROCEDURE CreateCalendar(
+     IN StartDate timestamp,
+     IN EndDate timestamp,
+     IN Name varchar(45)
+) BEGIN
+
+INSERT INTO CALENDAR (StartDate,EndDate,Name)
+VALUES (StartDate,EndDate,Name);
+
+END $$
+DELIMITER ;
+
+-- CALL CreateCalendar('2018-9-4 15:08;15','2018-9-4 15:08;15','string');
+-- End Create
+-- Begin Get all
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS GetAllCalendar$$
+CREATE PROCEDURE GetAllCalendar(
+) BEGIN
+
+SELECT * FROM CALENDAR;
+END $$
+DELIMITER ;
+
+-- CALL GetAllCalendar();
+-- End Get All
+-- Begin Get
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS GetCalendar $$
+CREATE PROCEDURE GetCalendar(
+IN ID int
+) BEGIN
+
+SELECT * FROM CALENDAR WHERE CALENDAR.id = ID;
+END $$
+DELIMITER ;
+
+-- CALL GetCalendar(1);
+-- End Get
+-- Begin Update
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS UpdateCalendar $$
+CREATE PROCEDURE UpdateCalendar(
+     IN StartDate timestamp,
+     IN EndDate timestamp,
+     IN Name varchar(45),
+     IN ID int
+) BEGIN
+
+UPDATE CALENDAR SET StartDate = StartDate,EndDate = EndDate,Name = Name
+WHERE CALENDAR.ID=ID;
+END $$
+DELIMITER ;
+
+-- CALL UpdateCalendar(53,'2018-9-4','2018-9-4','string');
+-- End Create
+
+
+-- Begin Delete
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS DeleteCalendar $$
+CREATE PROCEDURE DeleteCalendar(
+IN ID int
+) BEGIN
+
+DELETE FROM CALENDAR WHERE CALENDAR.id = ID;
+END $$
+DELIMITER ;
+
+-- CALL DeleteCalendar(1);
+-- End Delete

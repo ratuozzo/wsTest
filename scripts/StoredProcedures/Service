@@ -1,0 +1,81 @@
+-- Begin Create
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS CreateService $$
+CREATE PROCEDURE CreateService(
+     IN name varchar(45),
+     IN currency varchar(45),
+     IN basePrice float,
+     IN category varchar(45)
+) BEGIN
+
+INSERT INTO SERVICE (name,currency,basePrice,category)
+VALUES (name,currency,basePrice,category);
+
+END $$
+DELIMITER ;
+
+-- CALL CreateService('string''string'34.6'string');
+-- End Create
+-- Begin Get all
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS GetAllService$$
+CREATE PROCEDURE GetAllService(
+) BEGIN
+
+SELECT * FROM SERVICE;
+END $$
+DELIMITER ;
+
+-- CALL GetAllService();
+-- End Get All
+-- Begin Get
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS GetService $$
+CREATE PROCEDURE GetService(
+IN ID int
+) BEGIN
+
+SELECT * FROM SERVICE WHERE SERVICE.id = ID;
+END $$
+DELIMITER ;
+
+-- CALL GetService(1);
+-- End Get
+-- Begin Update
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS UpdateService $$
+CREATE PROCEDURE UpdateService(
+     IN name varchar(45),
+     IN currency varchar(45),
+     IN basePrice float,
+     IN category varchar(45),
+     IN ID int
+) BEGIN
+
+UPDATE SERVICE SET name = name,currency = currency,basePrice = basePrice,category = category
+WHERE SERVICE.ID=ID;
+END $$
+DELIMITER ;
+
+-- CALL UpdateService(1,'string''string'34.6'string');
+-- End Create
+
+
+-- Begin Delete
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS DeleteService $$
+CREATE PROCEDURE DeleteService(
+IN ID int
+) BEGIN
+
+DELETE FROM SERVICE WHERE SERVICE.id = ID;
+END $$
+DELIMITER ;
+
+-- CALL DeleteService(1);
+-- End Delete

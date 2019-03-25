@@ -1,0 +1,111 @@
+-- Begin Create
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS UserCreate $$
+
+CREATE PROCEDURE UserCreate(
+	IN	 NAME 		varchar(50),
+	IN	 LASTNAME 	varchar(50),
+	IN	 EMAIL 	varchar(100),
+	IN	 USERNAME 	varchar(100),
+	IN	 PASSWORD 	varchar(100),
+	IN	 BIRTHDATE Timestamp,
+	IN	 SEX 		char(1)
+	)
+
+BEGIN
+
+	INSERT INTO USER (NAME,LASTNAME,EMAIL,USERNAME,PASSWORD,BIRTHDATE,SEX)
+	VALUES (NAME,LASTNAME,EMAIL,USERNAME,PASSWORD,BIRTHDATE,SEX);
+
+END $$
+DELIMITER ;
+
+-- CALL UserCreate ("Andres","Rubio","andresfra92@gmail.com","provemed","11111111","1992/11/26","m");
+-- End Create
+
+-- Begin Get All
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS GetAllUser $$
+
+CREATE PROCEDURE GetAllUser()
+	
+
+BEGIN
+
+	SELECT * FROM USER;
+
+END $$
+DELIMITER ;
+
+-- CALL GetAllUser();
+-- End Get All
+
+-- Begin Get
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS GetUser $$
+
+CREATE PROCEDURE GetUser(
+	IN	 ID 		int
+	)
+	
+
+BEGIN
+
+	SELECT * FROM USER WHERE USER.id = ID;
+
+END $$
+DELIMITER ;
+
+-- CALL GetUser(7);
+-- End Get
+
+-- Begin Update
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS UserUpdate $$
+
+CREATE PROCEDURE UserUpdate(
+	IN	 NAME 		varchar(50),
+	IN	 LASTNAME 	varchar(50),
+	IN	 EMAIL 	varchar(100),
+	IN	 USERNAME 	varchar(100),
+	IN	 PASSWORD 	varchar(100),
+	IN	 BIRTHDATE Timestamp,
+	IN	 SEX 		char(1),
+	IN	 ID 		integer
+	)
+
+BEGIN
+
+	UPDATE USER SET NAME=NAME,LASTNAME=LASTNAME,EMAIL=EMAIL,USERNAME=USERNAME,PASSWORD=PASSWORD,BIRTHDATE=BIRTHDATE,SEX=SEX
+	WHERE USER.ID=ID;
+
+END $$
+DELIMITER ;
+
+-- CALL UserUpdate ("Juan","Rubio","andresfra92@gmail.com","provemed","11111111","1992/11/26","m",2);
+-- End Update
+
+-- Begin Delete
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS DeleteUser $$
+
+CREATE PROCEDURE DeleteUser(
+	IN	 ID 		int
+	)
+	
+
+BEGIN
+
+	DELETE FROM USER WHERE USER.id = ID;
+
+END $$
+DELIMITER ;
+
+-- CALL DeleteUser(7);
+-- End Delete
+
