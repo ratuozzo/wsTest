@@ -1,0 +1,91 @@
+-- Begin Create
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS CreateDonation $$
+CREATE PROCEDURE CreateDonation(
+     IN name varchar(45),
+     IN email varchar(100),
+     IN amount float,
+     IN description varchar(45),
+     IN purpose varchar(45),
+     IN currency varchar(45),
+     IN date timestamp,
+     IN transferNum varchar(45),
+     IN status varchar(45)
+) BEGIN
+
+INSERT INTO DONATION (name,email,amount,description,purpose,currency,date,transferNum,status)
+VALUES (name,email,amount,description,purpose,currency,date,transferNum,status);
+
+END $$
+DELIMITER ;
+
+-- CALL CreateDonation('string''string'34.6'string''string''string''string'53'string');
+-- End Create
+-- Begin Get all
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS GetAllDonation$$
+CREATE PROCEDURE GetAllDonation(
+) BEGIN
+
+SELECT * FROM DONATION;
+END $$
+DELIMITER ;
+
+-- CALL GetAllDonation();
+-- End Get All
+-- Begin Get
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS GetDonation $$
+CREATE PROCEDURE GetDonation(
+IN ID int
+) BEGIN
+
+SELECT * FROM DONATION WHERE DONATION.id = ID;
+END $$
+DELIMITER ;
+
+-- CALL GetDonation(1);
+-- End Get
+-- Begin Update
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS UpdateDonation $$
+CREATE PROCEDURE UpdateDonation(
+     IN name varchar(45),
+     IN email varchar(100),
+     IN amount float,
+     IN description varchar(45),
+     IN purpose varchar(45),
+     IN currency varchar(45),
+     IN date timestamp,
+     IN transferNum varchar(45),
+     IN status varchar(45),
+     IN ID int
+) BEGIN
+
+UPDATE DONATION SET name = name,email = email,amount = amount,description = description,purpose = purpose,currency = currency,date = date,transferNum = transferNum,status = status
+WHERE DONATION.ID=ID;
+END $$
+DELIMITER ;
+
+-- CALL UpdateDonation(1,'string''string'34.6'string''string''string''string'53'string');
+-- End Create
+
+
+-- Begin Delete
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS DeleteDonation $$
+CREATE PROCEDURE DeleteDonation(
+IN ID int
+) BEGIN
+
+DELETE FROM DONATION WHERE DONATION.id = ID;
+END $$
+DELIMITER ;
+
+-- CALL DeleteDonation(1);
+-- End Delete

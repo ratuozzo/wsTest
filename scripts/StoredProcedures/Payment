@@ -1,0 +1,89 @@
+-- Begin Create
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS CreatePayment $$
+CREATE PROCEDURE CreatePayment(
+     IN Service_id int,
+     IN name varchar(45),
+     IN personalId int,
+     IN amount float,
+     IN date timestamp,
+     IN transferNum varchar(45),
+     IN email varchar(100),
+     IN status varchar(45)
+) BEGIN
+
+INSERT INTO PAYMENT (Service_id,name,personalId,amount,date,transferNum,email,status)
+VALUES (Service_id,name,personalId,amount,date,transferNum,email,status);
+
+END $$
+DELIMITER ;
+
+-- CALL CreatePayment(53'string'5334.6'string'53'string''string');
+-- End Create
+-- Begin Get all
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS GetAllPayment$$
+CREATE PROCEDURE GetAllPayment(
+) BEGIN
+
+SELECT * FROM PAYMENT;
+END $$
+DELIMITER ;
+
+-- CALL GetAllPayment();
+-- End Get All
+-- Begin Get
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS GetPayment $$
+CREATE PROCEDURE GetPayment(
+IN ID int
+) BEGIN
+
+SELECT * FROM PAYMENT WHERE PAYMENT.id = ID;
+END $$
+DELIMITER ;
+
+-- CALL GetPayment(1);
+-- End Get
+-- Begin Update
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS UpdatePayment $$
+CREATE PROCEDURE UpdatePayment(
+     IN Service_id int,
+     IN name varchar(45),
+     IN personalId int,
+     IN amount float,
+     IN date timestamp,
+     IN transferNum varchar(45),
+     IN email varchar(100),
+     IN status varchar(45),
+     IN ID int
+) BEGIN
+
+UPDATE PAYMENT SET Service_id = Service_id,name = name,personalId = personalId,amount = amount,date = date,transferNum = transferNum,email = email,status = status
+WHERE PAYMENT.ID=ID;
+END $$
+DELIMITER ;
+
+-- CALL UpdatePayment(1,53'string'5334.6'string'53'string''string');
+-- End Create
+
+
+-- Begin Delete
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS DeletePayment $$
+CREATE PROCEDURE DeletePayment(
+IN ID int
+) BEGIN
+
+DELETE FROM PAYMENT WHERE PAYMENT.id = ID;
+END $$
+DELIMITER ;
+
+-- CALL DeletePayment(1);
+-- End Delete

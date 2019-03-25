@@ -1,0 +1,36 @@
+
+-- Begin GetPaymentByCategory
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS GetPaymentByCategory $$
+CREATE PROCEDURE GetPaymentByCategory(
+IN cat varchar(45)
+) BEGIN
+
+SELECT p.id,p.service_Id as serviceId,p.name, p.personalId, p.amount, p.date, p.transferNum, p.email,p.status,s.name as serviceName, s.currency,s.category
+FROM Payment as P
+INNER JOIN Service as S ON p.Service_id=s.id
+where s.category=cat;
+END $$
+DELIMITER ;
+
+Call GetPaymentByCategory('Misas')
+-- End GetPaymentByService
+
+
+-- Begin GetServiceByCategory
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS GetServiceByCategory $$
+CREATE PROCEDURE GetServiceByCategory(
+IN cat varchar(45)
+) BEGIN
+
+
+select * from service
+where category = cat;
+END $$
+DELIMITER ;
+
+Call GetServiceByCategory('Sacramentos')
+-- End GetServiceByCategory

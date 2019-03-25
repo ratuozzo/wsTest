@@ -1,0 +1,83 @@
+-- Begin Create
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS CreateNew $$
+CREATE PROCEDURE CreateNew(
+     IN title varchar(45),
+     IN content varchar(450),
+     IN image varchar(200),
+     IN video varchar(200),
+     IN date timestamp
+) BEGIN
+
+INSERT INTO NEW (title,content,image,video,date)
+VALUES (title,content,image,video,date);
+
+END $$
+DELIMITER ;
+
+-- CALL CreateNew('string','string','string','string','2018-9-4');
+-- End Create
+-- Begin Get all
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS GetAllNew$$
+CREATE PROCEDURE GetAllNew(
+) BEGIN
+
+SELECT * FROM NEW;
+END $$
+DELIMITER ;
+
+-- CALL GetAllNew();
+-- End Get All
+-- Begin Get
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS GetNew $$
+CREATE PROCEDURE GetNew(
+IN ID int
+) BEGIN
+
+SELECT * FROM NEW WHERE NEW.id = ID;
+END $$
+DELIMITER ;
+
+-- CALL GetNew(1);
+-- End Get
+-- Begin Update
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS UpdateNew $$
+CREATE PROCEDURE UpdateNew(
+     IN title varchar(45),
+     IN content varchar(450),
+     IN image varchar(200),
+     IN video varchar(200),
+     IN date timestamp,
+     IN ID int
+) BEGIN
+
+UPDATE NEW SET title = title,content = content,image = image,video = video,date = date
+WHERE NEW.ID=ID;
+END $$
+DELIMITER ;
+
+-- CALL UpdateNew(1,'string','string','string','string','2018-9-4');
+-- End Create
+
+
+-- Begin Delete
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS DeleteNew $$
+CREATE PROCEDURE DeleteNew(
+IN ID int
+) BEGIN
+
+DELETE FROM NEW WHERE NEW.id = ID;
+END $$
+DELIMITER ;
+
+-- CALL DeleteNew(1);
+-- End Delete
